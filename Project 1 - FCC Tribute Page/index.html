@@ -1,0 +1,338 @@
+<html>
+<style>
+body {
+  background: white;
+  text-align: justify;
+  font-family: "Work Sans", sans-serif;
+  font-size: 3vmin;
+}
+
+
+/* Fixes images proportions */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* This is the flex layout of the website*/
+.container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/* Unvisited link */
+a:link {
+  color: #6cce67;
+}
+
+/* Visited link */
+a:visited {
+  color: #fcb467;
+}
+
+/* We tell all items to be 100% width, via flex-basis */
+.container > * {
+  flex: 1 100%;
+  justify-content: center;
+}
+
+.header {
+  background-image: url("https://i.imgur.com/JoOZMD4.jpg");
+  min-height: 100vh;
+  height: auto;
+  /* Parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center -120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header-text {
+  text-align: right;
+  position: relative;
+  right: 10px;
+  top: 0%;
+  color: white;
+}
+
+.footer {
+  padding: 5px;
+  font-size: 10px;
+  background: #dff4de;
+}
+
+.header,
+.aside,
+.footer {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  text-align: justify;
+  padding: 20px;
+}
+
+/* This puts the images inside a flex container */
+.aside{
+  display: flex;
+}
+
+.image {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 140px;  /* grow shrink basis */
+}
+
+/* Resize images */
+.image img {
+  width: 50%;
+  height: auto;
+}
+
+/* We rely on source order for mobile-first approach. In this case:
+ * 1. header
+ * 2. aside 
+ * 3. article
+ * 4. footer
+ */
+
+/* Medium screens */
+@media all and (max-width: 800px) {
+  /* We tell sidebar to share a row */
+  .aside {
+    flex: 1 auto;
+  }
+  /* Display images in a line*/
+  .image {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+  }
+}
+
+/* Large screens */
+@media all and (min-width: 800px) {
+  .aside {
+    order: 1;
+    max-width: 150px;
+    flex-direction: column;
+  }
+  .main {
+    order: 2;
+    /* Why did this flex work? */
+    flex: 2;
+  }
+  .footer {
+    order: 3;
+  }
+}
+
+#title {
+ font-family: 'Rubik', sans-serif;
+ font-weight: 700;
+  font-size: 11vmin;
+  text-shadow: 3px 3px 0px #666;
+  color: white;
+}
+
+/* Code from https://codepen.io/harmputman/pen/IpAnb */
+blockquote {
+  display: block;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: #eee;
+  padding: 1.5em 0 0.5em;
+  margin: 1.5em 0;
+  position: relative;
+}
+blockquote:before {
+  content: "\201C";
+  position: absolute;
+  top: -0.1em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 2rem;
+  font: 6em/1.08em "Work Sans", sans-serif;
+  color: #666;
+  text-align: center;
+}
+blockquote:after {
+  content: "\2013 \2003" attr(cite);
+  display: block;
+  text-align: right;
+  font-size: 0.875em;
+  color: black;
+}
+
+/* Code to fade-in text
+* source: https://codepen.io/jh3y/pen/mMbOEQ?editors=1100*/
+.info {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.movies {
+  flex: 1 1 200px;
+  height: 200px;
+  position: relative;
+  justify-content: center;
+  margin: 5px;
+}
+
+.movies img {
+  overflow: hidden;
+  object-fit: cover;
+  /* Fit parent size */
+  height: 100%;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+  /* Stack order of element *
+  * insures overlay comes on top of image */
+  z-index: 1;
+}
+
+.movies:hover .overlay {
+  opacity: 1;
+}
+
+.text-overlay {
+  background-color: rgba(46, 204, 113, 0.4);
+  background: linear-gradient(
+    65deg,
+    rgba(46, 204, 113, 0.4),
+    rgba(243, 156, 18, 0.4)
+  );
+  color: #fafafa;
+  font-size: 1em;
+}
+
+.overlay div {
+  text-align: center;
+}
+</style>
+
+<body>
+<!-- FreeCodeCamp Tribute Page -->
+
+<!-- 
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+-->
+
+<!-- Import fonts -->
+<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Rubik:900" rel="stylesheet">
+<!-- End of import fonts -->
+<main id="main" class="container">
+  <header class="header">
+    <h1 id="title" class="header-text"> Hayao <br> Miyazaki</h1>
+  </header>
+
+  <aside class="aside">
+    <div class="image">
+      <img alt="Totoro" src="https://cdn140.picsart.com/232774495030212.png?r1024x1024">
+    </div>
+    <div class="image">
+      <img alt="Laputa" src="https://cdn140.picsart.com/240957381009212.png?r1024x1024">
+    </div>
+    <div class="image">
+      <img alt="Haku" src="https://cdn131.picsart.com/276808599004211.png?r1024x1024">
+    </div>
+    <div class="image">
+      <img alt="Howl's Moving Castle" src="https://cdn130.picsart.com/267563409001211.png?r1024x1024">
+    </div>
+  </aside>
+
+  <section id="tribute-info" class="main">
+    <blockquote cite="Hayao Miyazaki">Many of my movies have strong female leads—brave, self-sufficient girls that don’t think twice about fighting for what they believe in with all their heart. They’ll need a friend, or a supporter, but never a saviour.</blockquote>
+    <p> Hayao Miyazaki is a Japanese animator and screenwriter, and co-founder of Studio Ghibli. He has attained international acclaim as a masterful storyteller and as a maker of anime feature films, and is widely regarded as one of the greatest animation
+      filmmakers. </p>
+    <p>Below are a some of my personal favorite Miyazaki movies:
+      <div class="info">
+        <div class="movies">
+          <img src="http://images.amcnetworks.com/ifccenter.com/wp-content/uploads/2011/12/NAUSICAA_01_NVW1012945.jpg" alt="Nausicaa of the Valley of the Wind">
+          <div class="overlay text-overlay">
+            <div>
+              <b>1984</b><br> Nausicaä of the Valley of the Wind
+            </div>
+          </div>
+        </div>
+        <div class="movies">
+          <img src="https://assets6.domestika.org/project-items/000/366/176/laputa_1600-big.jpg?1367342542" alt="Castle in the Sky">
+          <div class="overlay text-overlay">
+            <div><b>1986</b><br>Castle in the Sky</div>
+          </div>
+        </div>
+        <div class="movies">
+          <img src="https://www.repstatic.it/content/nazionale/img/2017/10/13/123937646-78a102b0-bdf9-45c2-9816-dd0688eab9ea.jpg" alt="Totoro">
+          <div class="overlay text-overlay">
+            <div>
+              <b>1988</b><br>My Neighbor Totoro</div>
+        </div>
+        </div>
+        <div class="movies">
+          <img src="https://cdn.flickeringmyth.com/wp-content/uploads/2018/05/Porco-Rosso-2-600x322.jpg" alt="Porco Rosso">
+          <div class="overlay text-overlay">
+            <div>
+              <b>1992</b><br>Porco Rosso</div>
+        </div>
+        </div>
+        <div class="movies">
+          <img src="https://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/mononokehed.jpg?itok=FJ6dbQ9N&resize=1100x1100" alt="Princess Mononoke">
+          <div class="overlay text-overlay">
+            <div>
+              <b>1997</b><br>Princess Mononoke</div>
+        </div>
+        </div>
+        <div class="movies">
+          <img src="https://assetsds.cdnedge.bluemix.net/sites/default/files/styles/big_2/public/feature/images/spirited_away.jpg?itok=lqyIPEs-" alt="Spirited Away">
+          <div class="overlay text-overlay">
+            <div>
+              <b>2001</b><br>Spirited Away</div>
+        </div>
+        </div>
+        <div class="movies">
+          <img src="https://i.pinimg.com/originals/33/fe/2b/33fe2b9b45df105aedb578395ca045ed.jpg" alt="Howl's Moving Castle">
+          <div class="overlay text-overlay">
+            <div>
+              <b>2004</b><br>Howl's Moving Castle</div>
+        </div>
+        </div>
+        <div class="movies">
+          <img src="http://iffk.in/wp-content/uploads/2017/11/wind-rises.jpg" alt="The Wind Rises">
+          <div class="overlay text-overlay">
+            <div>
+              <b>2013</b><br>The Wind Rises</div>
+        </div>
+        </div>
+      </div>
+    </p>
+    <div> If you want to know more about this incredible animator, check out his <a id="tribute-link" href="https://www.wikiwand.com/en/Hayao_Miyazaki" target="_blank">Wikipedia page</a>.
+    </div>
+  </section>
+
+  <footer class="footer"> <b>Made with love</b> by Fabiane
+    <img src="https://cdn140.picsart.com/282759305038211.png?r1024x1024" width="20px" align="bottom">
+  </footer>
+</main>
+</body>
+
+</html>
