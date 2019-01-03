@@ -1,0 +1,228 @@
+body {
+  background: white;
+  text-align: justify;
+  font-family: "Work Sans", sans-serif;
+  font-size: 3vmin;
+}
+
+
+/* Fixes images proportions */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* This is the flex layout of the website*/
+.container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/* Unvisited link */
+a:link {
+  color: #6cce67;
+}
+
+/* Visited link */
+a:visited {
+  color: #fcb467;
+}
+
+/* We tell all items to be 100% width, via flex-basis */
+.container > * {
+  flex: 1 100%;
+  justify-content: center;
+}
+
+.header {
+  background-image: url("https://i.imgur.com/JoOZMD4.jpg");
+  min-height: 100vh;
+  height: auto;
+  /* Parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center -120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header-text {
+  text-align: right;
+  position: relative;
+  right: 10px;
+  top: 0%;
+  color: white;
+}
+
+.footer {
+  padding: 5px;
+  font-size: 10px;
+  background: #dff4de;
+}
+
+.header,
+.aside,
+.footer {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  text-align: justify;
+  padding: 20px;
+}
+
+/* This puts the images inside a flex container */
+.aside{
+  display: flex;
+}
+
+.image {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 140px;  /* grow shrink basis */
+}
+
+/* Resize images */
+.image img {
+  width: 50%;
+  height: auto;
+}
+
+/* We rely on source order for mobile-first approach. In this case:
+ * 1. header
+ * 2. aside 
+ * 3. article
+ * 4. footer
+ */
+
+/* Medium screens */
+@media all and (max-width: 800px) {
+  /* We tell sidebar to share a row */
+  .aside {
+    flex: 1 auto;
+  }
+  /* Display images in a line*/
+  .image {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+  }
+}
+
+/* Large screens */
+@media all and (min-width: 800px) {
+  .aside {
+    order: 1;
+    max-width: 150px;
+    flex-direction: column;
+  }
+  .main {
+    order: 2;
+    /* Why did this flex work? */
+    flex: 2;
+  }
+  .footer {
+    order: 3;
+  }
+}
+
+#title {
+ font-family: 'Rubik', sans-serif;
+ font-weight: 700;
+  font-size: 11vmin;
+  text-shadow: 3px 3px 0px #666;
+  color: white;
+}
+
+/* Code from https://codepen.io/harmputman/pen/IpAnb */
+blockquote {
+  display: block;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: #eee;
+  padding: 1.5em 0 0.5em;
+  margin: 1.5em 0;
+  position: relative;
+}
+blockquote:before {
+  content: "\201C";
+  position: absolute;
+  top: -0.1em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 2rem;
+  font: 6em/1.08em "Work Sans", sans-serif;
+  color: #666;
+  text-align: center;
+}
+blockquote:after {
+  content: "\2013 \2003" attr(cite);
+  display: block;
+  text-align: right;
+  font-size: 0.875em;
+  color: black;
+}
+
+/* Code to fade-in text
+* source: https://codepen.io/jh3y/pen/mMbOEQ?editors=1100*/
+.info {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.movies {
+  flex: 1 1 200px;
+  height: 200px;
+  position: relative;
+  justify-content: center;
+  margin: 5px;
+}
+
+.movies img {
+  overflow: hidden;
+  object-fit: cover;
+  /* Fit parent size */
+  height: 100%;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+  /* Stack order of element *
+  * insures overlay comes on top of image */
+  z-index: 1;
+}
+
+.movies:hover .overlay {
+  opacity: 1;
+}
+
+.text-overlay {
+  background-color: rgba(46, 204, 113, 0.4);
+  background: linear-gradient(
+    65deg,
+    rgba(46, 204, 113, 0.4),
+    rgba(243, 156, 18, 0.4)
+  );
+  color: #fafafa;
+  font-size: 1em;
+}
+
+.overlay div {
+  text-align: center;
+}
